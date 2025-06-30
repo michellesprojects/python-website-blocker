@@ -32,6 +32,7 @@ def block_sites():
                 file.write(entry_ipv6)
     
     print("Socials blocked")
+    
 
 def unblock_sites():
     log_entry = input("Why do you want to block socials? (100 char minimum): ")
