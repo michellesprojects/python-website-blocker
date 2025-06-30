@@ -51,7 +51,7 @@ def unblock_sites():
     for line in lines:
         if line.strip() == BLOCK_COMMENT:
             continue
-        if (line.startswith(REDIRECT) or line.startswith("::1")) and any (site in line for site in BLOCKED_SITES):
+        if (line.startswith(REDIRECT_IP) or line.startswith("::1")) and any (site in line for site in BLOCKED_SITES):
             continue
         new_lines.append(line)
     
