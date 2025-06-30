@@ -24,7 +24,7 @@ def block_sites():
         if BLOCK_COMMENT not in content:
             file.write(f"{BLOCK_COMMENT}\n")
         for site in BLOCKED_SITES:
-            entry_ipv4 = f"{REDIRECT} {site}\n" #block ipv4 in the form of `127.0.0.1 facebook.com`
+            entry_ipv4 = f"{REDIRECT_IP} {site}\n" #block ipv4 in the form of `127.0.0.1 facebook.com`
             entry_ipv6 = f"::1 {site}\n" #block ipv6 in the form of  `::1 facebook.com`
             if entry_ipv4 not in content:
                 file.write(entry_ipv4)
