@@ -24,9 +24,12 @@ def block_sites():
         if BLOCK_COMMENT not in content:
             file.write(f"{BLOCK_COMMENT}\n")
         for site in BLOCKED_SITES:
-            entry = f"{REDIRECT_IP} {site}\n"
-            if entry not in content:
-                file.write(entry)
+            entry_ipv4 = f"{REDIRECT} {site}\n" #block ipv4 in the form of `127.0.0.1 facebook.com`
+            entry_ipv6 = f"::1 {site}\n" #block ipv6 in the form of  `::1 facebook.com`
+            if entry_ipv4 not in content:
+                file.write(entry_ipv4)
+            if entry_ipv6 not in content:
+                file.write(entry_ipv6)
     
     print("Socials blocked")
 
@@ -48,7 +51,7 @@ def unblock_sites():
     for line in lines:
         if line.strip() == BLOCK_COMMENT:
             continue
-        if line.startswith(REDIRECT_IP) and any (site in line for site in BLOCKED_SITES):
+        if (line.startswith(REDIRECT) or line.startswith("::1")) and any (site in line for site in BLOCKED_SITES):
             continue
         new_lines.append(line)
     
